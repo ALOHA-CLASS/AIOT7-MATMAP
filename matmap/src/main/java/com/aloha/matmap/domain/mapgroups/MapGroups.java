@@ -1,4 +1,4 @@
-package com.aloha.matmap.domain;
+package com.aloha.matmap.domain.mapgroups;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
