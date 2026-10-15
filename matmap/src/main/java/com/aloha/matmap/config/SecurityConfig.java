@@ -22,8 +22,8 @@ import com.aloha.matmap.security.handler.CustomLogoutSuccessHandler;
 import com.aloha.matmap.security.handler.CustomRememberMeServices;
 import com.aloha.matmap.security.handler.LoginFailureHandler;
 import com.aloha.matmap.security.handler.LoginSuccessHandler;
-import com.aloha.matmap.service.impl.users.CustomDetailsService;
-import com.aloha.matmap.service.impl.users.CustomOAuth2UserService;
+import com.aloha.matmap.service.inter.users.CustomDetailsService;
+import com.aloha.matmap.service.inter.users.CustomOAuth2UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
