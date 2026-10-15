@@ -39,28 +39,60 @@ public class MyPageController {
     // 마이페이지
     @GetMapping("/mypage")
     public String mypage(
-        @AuthenticationPrincipal CustomUser loginUser, Model model
-    ) {
-        Users user = loginUser.getUser();
-        model.addAttribute("user", user);
+        @AuthenticationPrincipal CustomUser loginUser,
+        Model model
+    ){
+        // // 로그인 정보가 없는 경우
+        // if (loginUser == null) {
+        //     return "redirect:/users/login";
+        // }
+
+        // Users user = loginUser.getUser();
+        // model.addAttribute("user", user);
+
         return "page/mypage/index";
     }
 
     // 회원 정보 수정 화면
     @GetMapping("/mypage/info")
     public String info(
-        @AuthenticationPrincipal CustomUser loginUser, Model model
+        @AuthenticationPrincipal CustomUser loginUser,
+        Model model
     ) {
-        // 로그인된 회원 아이디로, 실시간으로 회원 정보 조회
-        String username = loginUser.getUsername();
+    // 로그인 기능 완성 전 테스트용 아이디
+    String username;
+        if (loginUser == null) {
+            username = "user"; // 실제 DB에 존재하는 아이디로 변경
+        } else {
+            username = loginUser.getUsername();
+        }
+        // 회원 정보 조회
         Users user = userService.selectByUsername(username);
+        if (user == null) {
+            return "redirect:/users/mypage";
+        }
         UserUpdateDto dto = new UserUpdateDto();
         dto.setName(user.getName());
         dto.setEmail(user.getEmail());
+        dto.setPhone(user.getTel());
         model.addAttribute("updateDto", dto);
         model.addAttribute("user", user);
         return "page/mypage/info";
-    }
+        }
+    // @GetMapping("/mypage/info")
+    // public String info(
+    //     @AuthenticationPrincipal CustomUser loginUser, Model model
+    // ) {
+    //     // 로그인된 회원 아이디로, 실시간으로 회원 정보 조회
+    //     String username = loginUser.getUsername();
+    //     Users user = userService.selectByUsername(username);
+    //     UserUpdateDto dto = new UserUpdateDto();
+    //     dto.setName(user.getName());
+    //     dto.setEmail(user.getEmail());
+    //     model.addAttribute("updateDto", dto);
+    //     model.addAttribute("user", user);
+    //     return "page/mypage/info";
+    // }
 
     @PostMapping("/mypage/info")
     public String updateInfo(

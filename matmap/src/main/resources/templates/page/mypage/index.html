@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko"
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/main_layout}">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <title></title>
+    <meta charset="UTF-8">
+    <title>MY PAGE</title>
 </head>
 <body layout:fragment="content">
 
     <div class="page-head">
         <h2 class="page-title">MY PAGE</h2>
         <p class="page-desc">
-            <b sec:authentication="principal.name">사용자</b>님 환영합니다.
+            <!-- <b sec:authentication="principal.name">사용자</b>님 환영합니다. -->
+            <!-- 황선진: 에러 때문에 잠시 주석을 걸어뒀습니다. --> 
         </p>
     </div>
 
     <div class="mypage-grid">
 
-        <a th:href="@{/orders}" class="mp-card">
+        <a th:href="@{/matmap}" class="mp-card">
             <span class="mp-ico">🍽</span>
             <h3>나의 맛맵 리스트</h3>
             <p>내가 등록한 맛맵</p>
