@@ -1,5 +1,7 @@
 package com.aloha.matmap.dto;
 
+import com.aloha.matmap.domain.mapgroups.MapVisibility;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
