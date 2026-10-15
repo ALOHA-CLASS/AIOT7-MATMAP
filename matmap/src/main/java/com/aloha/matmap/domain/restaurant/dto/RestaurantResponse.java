@@ -7,23 +7,29 @@ import java.math.BigDecimal;
 
 @Getter
 public class RestaurantResponse {
-    private final Long id;
+    private final Long no;
+    private final String id;
+    private final Long mapNo;
+    private final String name;
     private final String nickname;
+    private final String address;
     private final BigDecimal latitude;
     private final BigDecimal longitude;
     private final Double rating;
     private final String memo;
     private final Visibility visibility;
-    private final Long userId;
 
     public RestaurantResponse(Restaurant restaurant) {
+        this.no = restaurant.getNo();
         this.id = restaurant.getId();
+        this.mapNo = restaurant.getMapNo();
+        this.name = restaurant.getName();
         this.nickname = restaurant.getNickname();
+        this.address = restaurant.getAddress();
         this.latitude = restaurant.getLatitude();
         this.longitude = restaurant.getLongitude();
         this.rating = restaurant.getRating();
         this.memo = restaurant.getMemo();
         this.visibility = restaurant.getVisibility();
-        this.userId = restaurant.getUserId();
     }
 }

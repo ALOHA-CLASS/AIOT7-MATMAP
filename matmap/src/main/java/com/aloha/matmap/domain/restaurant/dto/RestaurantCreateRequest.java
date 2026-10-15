@@ -11,9 +11,18 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class RestaurantCreateRequest {
 
-    @NotBlank(message = "별명은 필수 입력 값입니다.")
-    @Size(max = 50, message = "별명은 50자 이내로 입력해주세요.")
+    @NotNull(message = "맛맵 번호는 필수 입력 값입니다.")
+    private Long mapNo;
+
+    @NotBlank(message = "맛집 이름은 필수 입력 값입니다.")
+    @Size(max = 200, message = "맛집 이름은 200자 이내로 입력해주세요.")
+    private String name;
+
+    @Size(max = 100, message = "별명은 100자 이내로 입력해주세요.")
     private String nickname;
+
+    @Size(max = 500, message = "주소는 500자 이내로 입력해주세요.")
+    private String address;
 
     @NotNull(message = "위도는 필수 입력 값입니다.")
     private BigDecimal latitude;
