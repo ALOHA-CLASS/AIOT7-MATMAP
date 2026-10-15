@@ -3,8 +3,8 @@ package com.aloha.matmap.dto;
 
 import java.time.LocalDateTime;
 
-import com.aloha.matmap.dto.map.MapGroup;
-import com.aloha.matmap.dto.map.MapVisibility;
+import com.aloha.matmap.domain.mapgroups.MapGroups;
+import com.aloha.matmap.domain.mapgroups.MapVisibility;
 
 public record MapGroupResponse(
     Long no,
@@ -17,7 +17,7 @@ public record MapGroupResponse(
     LocalDateTime updatedAt
 ) {
 
-    public static MapGroupResponse from(MapGroup mapGroup) {
+    public static MapGroupResponse from(MapGroups mapGroup) {
         return new MapGroupResponse(
             mapGroup.getNo(),
             mapGroup.getId(),

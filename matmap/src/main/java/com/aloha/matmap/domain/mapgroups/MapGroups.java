@@ -1,13 +1,27 @@
 package com.aloha.matmap.domain.mapgroups;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-public class MapGroups {
+import com.aloha.matmap.domain.users.Users;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+
+@Data 
 @Entity
 @Table(name = "map_groups")
-public class MapGroup {
+public class MapGroups {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +33,7 @@ public class MapGroup {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "owner_no", nullable = false)
-    private User owner;
+    private Users owner;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -37,57 +51,6 @@ public class MapGroup {
     @Column(name = "updated_at", insertable = false, updatable = false)
     private LocalDateTime updatedAt;
 
-    protected MapGroup() {
-    }
-
-    public MapGroup(
-            String id,
-            User owner,
-            String name,
-            String description,
-            MapVisibility visibility
-    ) {
-        this.id = id;
-        this.owner = owner;
-        this.name = name;
-        this.description = description;
-        this.visibility = visibility == null
-                ? MapVisibility.PRIVATE
-                : visibility;
-    }
-
-    public Long getNo() {
-        return no;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public MapVisibility getVisibility() {
-        return visibility;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
     public void update(
             String name,
             String description,
@@ -99,5 +62,14 @@ public class MapGroup {
             this.visibility = visibility;
         }
     }
-}
+
+    public MapGroups(String publicId, Users owner,
+            String name,
+            String description, MapVisibility visibility) {
+        this.id = publicId;
+        this.owner = owner;
+        this.name = name;
+        this.description = description;
+        this.visibility = visibility;
+    }
 }
