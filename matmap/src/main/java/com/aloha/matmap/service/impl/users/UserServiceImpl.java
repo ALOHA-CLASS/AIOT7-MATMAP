@@ -25,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserServiceImpl extends BaseServiceImpl<Users, UserRepository> implements UserService {
 
     private final UserAuthRepository userAuthRepository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService;
 
@@ -243,6 +244,18 @@ public class UserServiceImpl extends BaseServiceImpl<Users, UserRepository> impl
         }
         
         return tempPassword.toString();
+    }
+
+    @Override
+    @Transactional 
+    public Users changePassword(String username, String newPassword) {
+        // 아이디로 회원 조회
+        Users user = selectByUsername(username);
+
+        // 비밀번호 암호화
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        user.setPassword(encodedPassword);
+        return userRepository.save(user);
     }
 
 }

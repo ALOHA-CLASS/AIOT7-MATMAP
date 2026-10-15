@@ -21,7 +21,10 @@ public interface UserService extends BaseService<Users> {
     boolean updateById(Users entity);
 
     // 비밀번호 확인
-    boolean checkPassword(Users existingUser, String password);  
+    boolean checkPassword(Users existingUser, String password); 
+    
+    // 비밀번호 변경
+    Users changePassword(String username, String newPassword);
 
     // 아이디 찾기 - 이름과 이메일로 사용자 조회
     Users findByNameAndEmail(String name, String email);
