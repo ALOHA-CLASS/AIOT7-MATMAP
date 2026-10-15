@@ -1,4 +1,4 @@
-package com.aloha.matmap.service.impl.users;
+package com.aloha.matmap.service.inter.users;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

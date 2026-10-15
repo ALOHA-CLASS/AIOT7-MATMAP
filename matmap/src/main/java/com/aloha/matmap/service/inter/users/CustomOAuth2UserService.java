@@ -1,4 +1,4 @@
-package com.aloha.matmap.service.impl.users;
+package com.aloha.matmap.service.inter.users;
 
 import java.util.Map;
 import java.util.UUID;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.aloha.matmap.domain.users.CustomUser;
 import com.aloha.matmap.domain.users.Users;
 import com.aloha.matmap.repository.users.UserRepository;
-import com.aloha.matmap.service.inter.users.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
